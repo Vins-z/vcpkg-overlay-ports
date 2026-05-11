@@ -1,6 +1,6 @@
 {
   "name": "backtesting-engine",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "C++20 backtesting engine with CMake package exports and an optional C API wrapper",
   "homepage": "https://github.com/Vins-z/Backtesting-Engine",
   "license": "MIT",

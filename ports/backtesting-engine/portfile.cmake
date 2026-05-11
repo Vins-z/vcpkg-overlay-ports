@@ -1,19 +1,16 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO Vins-z/Backtesting-Engine
-    REF v1.0.1
-    SHA512 bb4f684f7866dc5e4e3afe1fdb44602cb3026a6f5ea396babc438a0bf585518fbda5ee1446c6de5341106b39074e32031889a9447a522770d1334012726fb7bf
+    REF v1.1.0
+    SHA512 f902e5f281403f5de23fc564aaf7043a34b7a2027a6e058a6be90bb6b2a7cfc7cbf0e59551988475ef796c233a71ebc1bd5400ec2756014aa6edec7b78e798db
     HEAD_REF master
 )
 
 set(PROJECT_SUBDIR "${SOURCE_PATH}/cpp-backtesting-engine")
 
-# Upstream v1.0.1 uses pkg-config for curl/yaml-cpp. This port vendors a CMake 3.20+
-# find_package-based CMakeLists (see cmake/CMakeLists.txt) so vcpkg dependencies work.
-file(COPY "${CMAKE_CURRENT_LIST_DIR}/cmake/CMakeLists.txt"
-    DESTINATION "${PROJECT_SUBDIR}"
-    FILE_PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
-)
+# Upstream v1.1.0 uses find_package() directly for curl/yaml-cpp/eigen/spdlog/nlohmann_json
+# and has BACKTESTINGENGINE_ENABLE_TALIB / BACKTESTINGENGINE_BUILD_EXAMPLES toggles, so no
+# CMakeLists vendoring is needed here.
 
 if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/usage")
     file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage"
